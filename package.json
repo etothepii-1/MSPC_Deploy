@@ -1,0 +1,23 @@
+{
+  "name": "mspc",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "connect-mongo": "^5.1.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "ejs": "^3.1.10",
+    "express": "^4.21.1",
+    "express-session": "^1.18.1",
+    "monaco-editor": "^0.52.2",
+    "mongoose": "^8.8.4",
+    "nodemon": "^3.1.7",
+    "path": "^0.12.7"
+  }
+}

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="/images/favicon.ico" />
+    <title>MSPC - Mapo Samgae Programming Challenge</title>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="/styles/global.css" />
+  </head>
+  <body>
+    <%- include('navbar', { page: 'contact-us' }) %>
+
+    <main>
+      <div class="container">
+        <form action="/inquiry" method="post">
+          <fieldset>
+            <div class="form-group">
+              <% if (!loggedIn) { %>
+                <label for="studentId" class="h3 mt-4">학번</label>
+                <input id="studentId" class="form-control mt-2" type="text" name="studentId" placeholder="ex)20105"  minlength="5" maxlength="5" required/>
+                <label for="userName" class="h3 mt-4">이름</label>
+                <input id="userName" class="form-control mt-2" type="text" name="userName"  minlength="2" maxlength="3" required />
+              <% } %>
+              <label for="textarea" class="h3 mt-4">문의사항</label>
+              <textarea id="textarea" class="form-control mt-2" name="content" rows="10" maxlength="10000" required></textarea>
+            </div>
+            <input id="submit-btn" class="btn btn-dark mt-4" type="submit" value="제출" />
+          </fieldset>
+        </form>
+      </div>
+    </main>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+    <script src="/scripts/global.js"></script>
+    <script>
+      document.getElementById('submit-btn').addEventListener('click', function () {
+        const contentLength = document.getElementById('textarea').value.length;
+        <% if (!loggedIn) { %>
+        const studentIdLength = document.getElementById('studentId').value.length;
+        const userNameLength = document.getElementById('userName').value.length;
+        if (studentIdLength === 5 && (userNameLength === 2 || userNameLength === 3) && (contentLength > 0 && contentLength <= 10000)) {
+        <% } else { %>
+        if (contentLength > 0 && contentLength <= 10000) {
+        <% } %>
+          alert('제출 완료');
+        }
+      });
+    </script>
+  </body>
+</html>
